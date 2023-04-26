@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  Test:
+  installation-test:
     name: "Test if installation works"
     runs-on: ubuntu-latest
     steps:
