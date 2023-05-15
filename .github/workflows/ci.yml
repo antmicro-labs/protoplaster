@@ -34,7 +34,7 @@ jobs:
          python3-pip telnet iptables iproute2 bc cpio rsync
 
       - name: Run scripts in Renode
-        uses: antmicro/renode-linux-runner-action@v0
+        uses: antmicro-labs/renode-linux-runner-action@v0-next-fix
         with:
           shared-dir: ./
           renode-run: |
