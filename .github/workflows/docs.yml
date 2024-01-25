@@ -33,10 +33,43 @@ jobs:
           tuttest README.md example > example.yml
           protoplaster -t example.yml --generate-docs
 
-      - name: Generate test report from yml
+      - name: Prepare drive image for results from Renode
         run: |
-          protoplaster -t example.yml --csv report.csv 
-          protoplaster-test-report report.csv -t md
+          truncate drive.img -s 128MB
+          mkfs.ext4 drive.img
+
+      - name: Generate test report in Renode
+        uses: antmicro/renode-linux-runner-action@v1
+        with:
+          board: custom
+          resc: ${{ github.workspace }}/.github/test_platform/init.resc
+          repl: ${{ github.workspace }}/.github/test_platform/platform.repl
+          arch: riscv64
+          kernel: ${{ github.workspace }}/.github/test_platform/kernel-riscv64-hifive_unleashed_virtio.tar.xz
+          shared-dirs: ./
+          renode-run: |
+            python -m venv .venv
+            source .venv/bin/activate
+            pip install .
+            protoplaster -t example.yml --csv report.csv
+            protoplaster-test-report report.csv -t md
+            mkdir -p host_dir
+            mount /dev/vdb host_dir
+            cp report.md host_dir/report.md
+            umount host_dir 
+          devices: |
+            gpio 0 32
+            i2c 0x3C
+            i2c 0x70
+          tasks: |
+            ${{ github.workspace }}/.github/test_platform/renode_network.yml
+            ${{ github.workspace }}/.github/test_platform/v4l2.yml
+
+      - name: Read report from image
+        run: |
+          mkdir guest_out
+          sudo mount drive.img guest_out
+          cp guest_out/report.md report.md
 
       - name: Generate system report from yml
         run: |
