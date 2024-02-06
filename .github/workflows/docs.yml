@@ -39,7 +39,7 @@ jobs:
           mkfs.ext4 drive.img
 
       - name: Generate test report in Renode
-        uses: antmicro/renode-linux-runner-action@v1
+        uses: antmicro-labs/renode-linux-runner-action@b0865fc68e9abda8fde821d5ba628b26833120df
         with:
           board: custom
           resc: ${{ github.workspace }}/.github/test_platform/init.resc
