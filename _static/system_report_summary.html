@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .hidden {
+                display: none;
+            }
+            body {
+                background-color: #2e303e;
+                margin: 0;
+            }
+            .summary_button {
+                background-color: #006e63;
+                border: none;
+                margin-bottom: 4px;
+                margin-left: 8px;
+                color: white;
+                <!-- padding: 15px 32px; -->
+                text-align: center;
+                font-size: 16px;
+            }
+            .summary_button_pressed {
+                background-color: #004942;
+            }
+            table, th, td {
+                border: 1px solid #8e91ab;
+            }
+            .item_header_text {
+                color: white;
+                margin: 0;
+            }
+            .text {
+                color: white;
+                font-family: sans-serif;
+            }
+            .code {
+                color: white;
+            }
+            .output_text {
+                font-size: 16px;
+                margin-top: 4px;
+            }
+            .summary {
+                background-color: #1c1d26;
+            }
+            .item_header{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #009485;
+                padding: 8px;
+            }
+
+            .item_buttons{
+                display: flex;
+                align-items: flex-end;
+                background-color: #009485;
+            }
+            a:link, a:visited {
+                color: #009485;
+                text-decoration: none;
+            }
+            a:active, a:hover {
+                color: #004942;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1 class="text">System report summary</h1>
+        <div class="item_header">
+            <h2 class="item_header_text">uname</h2>
+        </div>
+        <div class="item_buttons">
+            
+            <button 
+                class="summary_button"
+                id="uname_os info_button" 
+                onclick="
+                    document.getElementById('uname_os info').classList.toggle('hidden');
+                    document.getElementById('uname_os info_button').classList.toggle('summary_button_pressed');
+                "
+            >os info</button>
+            
+            </div>
+        
+        <p class="text output_text">Full output available in <a href="uname.out">uname.out</a></p>
+        
+        
+        
+        <div id="uname_os info" class="hidden summary">
+            <h3 class="text">os info</h3>
+            <pre><code class="code">Linux fv-az569-316 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 22:33:04 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+        </div>
+        
+        
+        <div class="item_header">
+            <h2 class="item_header_text">dmesg</h2>
+        </div>
+        <div class="item_buttons">
+            
+            <button 
+                class="summary_button"
+                id="dmesg_usb_button" 
+                onclick="
+                    document.getElementById('dmesg_usb').classList.toggle('hidden');
+                    document.getElementById('dmesg_usb_button').classList.toggle('summary_button_pressed');
+                "
+            >usb</button>
+            
+            <button 
+                class="summary_button"
+                id="dmesg_v4l_button" 
+                onclick="
+                    document.getElementById('dmesg_v4l').classList.toggle('hidden');
+                    document.getElementById('dmesg_v4l_button').classList.toggle('summary_button_pressed');
+                "
+            >v4l</button>
+            
+            </div>
+        
+        <p class="text output_text">Full output available in <a href="dmesg.out">dmesg.out</a></p>
+        
+        
+        
+        <div id="dmesg_usb" class="hidden summary">
+            <h3 class="text">usb</h3>
+            <pre><code class="code">[    0.949591] usbcore: registered new interface driver usbfs
+[    0.955278] usbcore: registered new interface driver hub
+[    0.958104] usbcore: registered new device driver usb
+</code></pre>
+        </div>
+        
+        <div id="dmesg_v4l" class="hidden summary">
+            <h3 class="text">v4l</h3>
+            <pre><code class="code">this summary is empty</code></pre>
+        </div>
+        
+        
+        <div class="item_header">
+            <h2 class="item_header_text">ip</h2>
+        </div>
+        <div class="item_buttons">
+            
+            <button 
+                class="summary_button"
+                id="ip_Network interfaces state_button" 
+                onclick="
+                    document.getElementById('ip_Network interfaces state').classList.toggle('hidden');
+                    document.getElementById('ip_Network interfaces state_button').classList.toggle('summary_button_pressed');
+                "
+            >Network interfaces state</button>
+            
+            </div>
+        
+        <p class="text output_text">Full output available in <a href="ip.out">ip.out</a></p>
+        
+        
+        
+        <div id="ip_Network interfaces state" class="hidden summary">
+            <h3 class="text">Network interfaces state</h3>
+            <pre><code class="code"><table>
+    <tr>
+        <th>interface</th>
+        <th>state</th>
+        <th>ipv4</th>
+        <th>ipv6</th>
+    </tr>
+    <tr>
+        <td>lo</td>
+        <td>UNKNOWN</td>
+        <td>127.0.0.1/8</td>
+        <td>::1/128</td>
+    </tr>
+    <tr>
+        <td>eth0</td>
+        <td>UP</td>
+        <td>10.1.0.14/16</td>
+        <td>fe80::20d:3aff:fe4e:68f9/64</td>
+    </tr>
+    <tr>
+        <td>docker0</td>
+        <td>DOWN</td>
+        <td>172.17.0.1/16</td>
+        <td>cker0:</td>
+    </tr>
+    <tr>
+        <td>tap0</td>
+        <td>UNKNOWN</td>
+        <td>172.16.0.1/16</td>
+        <td>fe80::fc99:27ff:fe0b:54d0/64</td>
+    </tr>
+</table>
+</code></pre>
+        </div>
+        
+        
+    </body>
+</html>
